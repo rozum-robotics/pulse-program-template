@@ -1,0 +1,4 @@
+graft requirements
+include README.md
+include version
+global-exclude *.pyc
