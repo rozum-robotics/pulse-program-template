@@ -1,0 +1,8 @@
+{
+    "project_name": "helloworld",
+    "email": "dev@rozum.com",
+    "author": "Rozum Robotics",
+    "url": "https://rozum.com",
+    "version": "0.0.1",
+    "pulse_api_version": "1.6.0"
+}
