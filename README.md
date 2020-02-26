@@ -26,7 +26,7 @@ Go to directory where you want to start your project and initiate it:
 
 ```bash
 cd workdir
-cookiecutter git@dev.rozum.com:rozum-soft/utils/pulse-program-template.git
+python3 -m cookiecutter git@dev.rozum.com:rozum-soft/utils/pulse-program-template.git
 ```
 
 Fill in the fields and start developing at project_name/project_name folder.
@@ -37,4 +37,3 @@ To test that project initiated properly, run:
 
 **Note:** It is recommended to create and activate python virtual environment
 prior to execution of the command given above.
-
