@@ -5,10 +5,10 @@ venv:
 	@source venv/bin/activate
 	@pip install -r requirements.txt
 
-deps-no-venv:
+deps-novenv:
 	@python3 -m pip install -r requirements.txt
 
-test:
+test-novenv:
 	@pytest
 
 test-in-venv:
