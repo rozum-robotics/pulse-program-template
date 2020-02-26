@@ -39,7 +39,7 @@ def long_description(short_description: str) -> str:
 
 
 
-NAME = "{{cookiecutter.project_name}}"
+NAME = "{{cookiecutter.package_name}}"
 DESCRIPTION = ""
 URL = "{{cookiecutter.url}}"
 EMAIL = "{{cookiecutter.email}}"
