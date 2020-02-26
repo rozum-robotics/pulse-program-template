@@ -28,7 +28,7 @@ def test_build_files_added(cookies):
 def test_package_files_added(cookies):
     result = cookies.bake()
     package_files = os.listdir(
-        pathlib.Path(result.project.strpath) / "helloworld"
+        pathlib.Path(result.project.strpath) / "pulse_program"
     )
 
     assert_that(
