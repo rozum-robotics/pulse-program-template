@@ -1,1 +1,2 @@
 -r production.txt
+paramiko==2.7.1
