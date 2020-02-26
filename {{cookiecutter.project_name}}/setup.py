@@ -48,9 +48,7 @@ VERSION = read_version()
 DEVELOPMENT_STATUS = development_status(VERSION)
 REQUIRED = read_requirements("requirements/production.txt")
 LONG_DESCRIPTION = long_description(DESCRIPTION)
-DEPENDENCY_LINKS = [
-    "https://pip.rozum.com/simple/"
-]
+
 
 setup(
     name=NAME,
