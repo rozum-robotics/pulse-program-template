@@ -1,4 +1,4 @@
-.PHONY: venv deps-no-venv test test-in-venv
+.PHONY: venv deps-no-venv test test-in-venv ci-test
 
 venv:
 	@python3 -m venv venv
@@ -11,5 +11,7 @@ deps-novenv:
 test-novenv:
 	@pytest
 
-test-in-venv:
+test-invenv:
 	@venv/bin/python3 -m pytest test
+
+ci-test: deps-novenv test-novenv
