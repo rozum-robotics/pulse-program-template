@@ -1,10 +1,14 @@
+import os
+import pathlib
+
 import pytest
+from hamcrest import *
+
 
 def test_bake_project(cookies):
     result = cookies.bake()
-    assert result.exit_code == 0
-    assert result.exception is None
-    assert result.project.basename == "helloworld"
-    assert result.project.isdir()
 
-
+    assert_that(result.exit_code, equal_to(0))
+    assert_that(result.exception, none())
+    assert_that(result.project.basename, equal_to("helloworld"))
+    assert_that(result.project.isdir(), is_(True))
