@@ -1,1 +1,3 @@
 -r production.txt
+paramiko==2.7.1
+scp==0.13.2
