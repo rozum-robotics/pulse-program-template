@@ -31,9 +31,9 @@ def zip_all():
 
             rel_root = os.path.relpath(root, SCRIPT_ROOT)
 
-            for file in files:
-                if file not in file_exclusions:
-                    zip_file.write(os.path.join(rel_root, file))
+            for f in files:
+                if f not in file_exclusions:
+                    zip_file.write(os.path.join(rel_root, f))
 
 
 def upload(host, zip_path):
