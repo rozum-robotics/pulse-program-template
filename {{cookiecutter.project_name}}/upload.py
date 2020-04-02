@@ -10,11 +10,16 @@ from scp import SCPClient
 from zipfile import ZipFile
 
 SANDBOX_USERNAME = "sandbox"
-SANDBOX_PASSWORD = "sandbox2"
 SANDBOX_PORT = 22
 
 SCRIPT = os.path.realpath(__file__)
 SCRIPT_ROOT = os.path.dirname(SCRIPT)
+
+
+def wait_cmd(stds):
+    for s in stds:
+        s.channel.recv_exit_status()
+    return stds
 
 
 def make_sdist():
@@ -56,28 +61,26 @@ def upload(host, venv_init=True):
     if venv_init:    
         # intialize venv for project
         print("Intializing virtual environment...", end="")
-        ssh.exec_command("python3 -m venv {}".format(venv_path))
+        wait_cmd(ssh.exec_command("python3 -m venv {}".format(venv_path)))
         print("done {}".format(venv_path))
     
-    
-    scp = SCPClient(ssh.get_transport())
-    
     print("Uploading distribution ...", end="")
-    scp.put(os.path.join(SCRIPT_ROOT, dist_path), project_path)
+    with SCPClient(ssh.get_transport()) as scp:
+        scp.put(os.path.join(SCRIPT_ROOT, dist_path), project_path)
     print("done")
     
     print("Installing distribution...", end="")
     install_cmd = " ".join([
-        "{}/bin/python".format(venv_path),
+        "cd {} &&".format(project_path),
+        "venv/bin/python",
         "-m pip install",
         os.path.basename(dist_path),
         "-i https://pip.rozum.com/simple"
     ])
-    ssh.exec_command(install_cmd)
+    wait_cmd(ssh.exec_command(install_cmd))
     print("done")
     
     print("Closing SSH connection...", end="")
-    scp.close()
     ssh.close()
     print("done")
 
