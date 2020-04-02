@@ -4,4 +4,4 @@ cd `dirname $0`
 
 python3 -m venv venv
 source venv/bin/activate
-pip3 install -r requirements/production.txt
+pip3 install .
