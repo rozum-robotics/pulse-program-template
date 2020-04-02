@@ -3,6 +3,7 @@ import os
 import sys
 import argparse
 import getpass
+import subprocess
 
 from paramiko import SSHClient, AutoAddPolicy
 from scp import SCPClient
@@ -16,26 +17,25 @@ SCRIPT = os.path.realpath(__file__)
 SCRIPT_ROOT = os.path.dirname(SCRIPT)
 
 
-def zip_all():
-    file_exclusions = [
-        "{{cookiecutter.project_name}}.zip",
-        ".gitignore",
-        "development.txt",
-    ]
-    dir_exclusions = ["venv", "test"]
-
-    with ZipFile("{{cookiecutter.project_name}}.zip", "w") as zip_file:
-        for root, dirs, files in os.walk(SCRIPT_ROOT, topdown=True):
-            dirs[:] = [d for d in dirs if d not in dir_exclusions]
-            
-            rel_root = os.path.relpath(root, SCRIPT_ROOT)
-
-            for f in files:
-                if f not in file_exclusions:
-                    zip_file.write(os.path.join(rel_root, f))
+def make_sdist():
+    proc = subprocess.run(
+        ["python3", "setup.py", "sdist", "--formats=zip"],
+        cwd=SCRIPT_ROOT
+    )
+    if proc.returncode:
+        raise RuntimeError("Failed to make source distribution")
+    with open("version") as v:
+        version = v.read().strip()
+        return "dist/{{cookiecutter.package_name}}-{}.zip".format(version)
 
 
-def upload(host, zip_path):
+def upload(host, venv_init=True):
+    # TODO: replace prints with logging to file and stdout
+    print("Making distribution...", end="")
+    dist_path = make_sdist()
+    print("done {}".format(dist_path))
+    
+    print("Establishing SSH connection to {}:{}...".format(host, SANDBOX_PORT))
     ssh = SSHClient()
     ssh.set_missing_host_key_policy(AutoAddPolicy())
     pwd = getpass.getpass("Enter password: ")
@@ -45,20 +45,41 @@ def upload(host, zip_path):
         password=pwd,
         port=SANDBOX_PORT,
     )
-    ssh.exec_command("mkdir -p /home/sandbox/player")
-
+    print("Connection established")
+    
+    print("Preparing directory for the project...", end="")
+    project_path = "/home/sandbox/player/{{cookiecutter.project_name}}"
+    venv_path = "{}/venv".format(project_path)
+    ssh.exec_command("mkdir -p {}".format(project_path))
+    print("done")
+    
+    if venv_init:    
+        # intialize venv for project
+        print("Intializing virtual environment...", end="")
+        ssh.exec_command("python3 -m venv {}".format(venv_path))
+        print("done {}".format(venv_path))
+    
+    
     scp = SCPClient(ssh.get_transport())
-    scp.put(os.path.join(SCRIPT_ROOT, zip_path), "/home/sandbox/player")
-
-    ssh.exec_command(
-        f"unzip /home/sandbox/player/{zip_path} -d /home/sandbox/player/{{cookiecutter.project_name}}"
-    )
-    ssh.exec_command(
-        "/home/sandbox/player/{{cookiecutter.project_name}}/init.sh"
-    )
-
+    
+    print("Uploading distribution ...", end="")
+    scp.put(os.path.join(SCRIPT_ROOT, dist_path), project_path)
+    print("done")
+    
+    print("Installing distribution...", end="")
+    install_cmd = " ".join([
+        "{}/bin/python".format(venv_path),
+        "-m pip install",
+        os.path.basename(dist_path),
+        "-i https://pip.rozum.com/simple"
+    ])
+    ssh.exec_command(install_cmd)
+    print("done")
+    
+    print("Closing SSH connection...", end="")
     scp.close()
     ssh.close()
+    print("done")
 
 
 def main():
@@ -66,9 +87,6 @@ def main():
     parser.add_argument("host")
     args = parser.parse_args()
     robot_host = args.host
-    print(f"Uploading project to {robot_host}")
-    zip_all()
-
     upload(robot_host, "{{cookiecutter.project_name}}.zip")
 
 
