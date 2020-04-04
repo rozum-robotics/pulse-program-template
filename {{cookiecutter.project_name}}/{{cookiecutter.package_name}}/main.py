@@ -18,11 +18,11 @@ def run(num_iterations):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "-n",
-        "--n_iter", 
+        "-i",
+        "--iterations", 
         type=int, 
         required=True, 
         description="Number of iterations to perform"
     )
     args = parser.parse_args()
-    run(args.n)
+    run(args.i)
