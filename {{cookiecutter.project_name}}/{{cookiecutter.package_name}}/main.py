@@ -14,6 +14,7 @@ def run(num_iterations):
     except Exception as exc:
         program.on_error(exc)
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
