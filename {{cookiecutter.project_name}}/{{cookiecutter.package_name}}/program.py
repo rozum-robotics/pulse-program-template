@@ -5,24 +5,24 @@ robot = RobotPulse("localhost:8081")
 
 
 def before_all():
-    pass
+    print("Before all")
 
 
 def before_each():
-    pass
+    print("Before each")
 
 
 def execute():
-    pass
+    print("Execution")
 
 
 def after_each():
-    pass
+    print("After each")
 
 
 def after_all():
-    pass
+    print("After all")
 
 
 def on_error(exc):
-    pass
+    print("On error")
