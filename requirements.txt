@@ -1,2 +1,6 @@
+-i https://pip.rozum.com/simple
+
 pytest-cookies==0.5.1
 PyHamcrest==2.0.0
+pytest-mock==3.0.0
+pulse-api==1.7.0
