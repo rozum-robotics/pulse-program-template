@@ -6,7 +6,7 @@ venv:
 	@pip install -r requirements.txt
 
 deps-novenv:
-	@python3 -m pip install -r requirements.txt -i https://pip.rozum.com/simple
+	@python3 -m pip install -r requirements.txt
 
 test-novenv:
 	@pytest
