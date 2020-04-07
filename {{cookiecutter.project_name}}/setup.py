@@ -58,7 +58,7 @@ setup(
     url=URL,
     license="MIT",
     classifiers=[
-        "License :: OSI Approved :: Apache Software License",
+        "License :: OSI Approved :: MIT License",
         DEVELOPMENT_STATUS,
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
