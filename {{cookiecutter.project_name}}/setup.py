@@ -56,7 +56,7 @@ setup(
     packages=find_packages(exclude=("test")),
     install_requires=REQUIRED,
     url=URL,
-    license="Apache License 2.0",
+    license="MIT",
     classifiers=[
         "License :: OSI Approved :: Apache Software License",
         DEVELOPMENT_STATUS,
