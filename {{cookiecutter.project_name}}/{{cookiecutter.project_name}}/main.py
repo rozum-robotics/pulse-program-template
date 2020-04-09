@@ -1,6 +1,6 @@
 import argparse
 
-from {{cookiecutter.package_name}} import program
+from {{cookiecutter.project_name}} import program
 
 
 def run(num_iterations: int, robot_ip: str):    
