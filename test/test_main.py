@@ -1,6 +1,7 @@
 import sys
 import pytest
 
+from hamcrest import assert_that, is_not, has_item
 
 def test_main_run(cookies):
     sys.path.append(cookies.bake().project.strpath)
@@ -47,4 +48,4 @@ def test_on_error_exit_invocation(cookies, mocker):
     except:
         instance = program_patch.return_value
         instance.__exit__.assert_called_once()
-        assert None not in instance.__exit__.call_args
+        assert_that(instance.__exit__.call_args, is_not(has_item(None)))
