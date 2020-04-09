@@ -31,7 +31,7 @@ def make_sdist():
         raise RuntimeError("Failed to make source distribution")
     with open("version") as v:
         version = v.read().strip()
-        return "dist/{{cookiecutter.package_name}}-{}.zip".format(version)
+        return "dist/{{cookiecutter.project_name}}-{}.zip".format(version)
 
 
 def upload(host, venv_init=True):
@@ -90,7 +90,7 @@ def main():
     parser.add_argument("host")
     args = parser.parse_args()
     robot_host = args.host
-    upload(robot_host, "{{cookiecutter.project_name}}.zip")
+    upload(robot_host)
 
 
 if __name__ == "__main__":
