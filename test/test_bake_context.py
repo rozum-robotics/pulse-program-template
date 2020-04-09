@@ -2,7 +2,7 @@ import os
 import pathlib
 
 import pytest
-from hamcrest import *
+from hamcrest import assert_that, equal_to
 
 
 def test_project_name_applied(cookies):

@@ -3,7 +3,7 @@ import pathlib
 from cookiecutter.exceptions import FailedHookException
 
 import pytest
-from hamcrest import *
+from hamcrest import assert_that, equal_to, instance_of
 
 
 def test_invalid_project_name(cookies):

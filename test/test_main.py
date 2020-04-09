@@ -1,6 +1,5 @@
 import sys
 import pytest
-from hamcrest import *
 
 
 def test_main_run(cookies):

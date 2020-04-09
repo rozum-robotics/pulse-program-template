@@ -2,7 +2,7 @@ import os
 import pathlib
 
 import pytest
-from hamcrest import *
+from hamcrest import assert_that, has_items
 
 
 def test_build_files_added(cookies):
