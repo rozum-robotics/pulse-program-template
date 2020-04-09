@@ -19,9 +19,9 @@ def read_requirements(path: str) -> List[str]:
 
 
 def development_status(version: str) -> str:
-    if "a" in VERSION:
+    if "a" in version:
         dev_status = "Development Status :: 3 - Alpha"
-    elif "dev" in VERSION:
+    elif "dev" in version:
         dev_status = "Development Status :: 4 - Beta"
     else:
         dev_status = "Development Status :: 5 - Production/Stable"
@@ -56,9 +56,9 @@ setup(
     packages=find_packages(exclude=("test")),
     install_requires=REQUIRED,
     url=URL,
-    license="Apache License 2.0",
+    license="MIT",
     classifiers=[
-        "License :: OSI Approved :: Apache Software License",
+        "License :: OSI Approved :: MIT License",
         DEVELOPMENT_STATUS,
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
