@@ -1,1 +1,2 @@
+pulse_executor==0.0.1
 pulse-api=={{cookiecutter.pulse_api_version}}
