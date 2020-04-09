@@ -5,9 +5,8 @@ Template to create Python programs for Pulse Program Player.
 ## Configuration
 ```json
 {
-    "project_name": "helloworld", // name of the folder
-    "package_name": "pulse_program", // name of the package. MUST be a valid python module/package name
-    //help: https://docs.python-guide.org/writing/structure/#modules
+    "project_name": "helloworld", // name of the project folder and the package inside.
+    // MUST be a valid python module/package name, see: https://docs.python-guide.org/writing/structure/#modules 
     "email": "dev@rozum.com", // optional email
     "author": "Rozum Robotics", // optional author
     "url": "https://rozum.com", // optional url

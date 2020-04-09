@@ -2,23 +2,14 @@ import os
 import pathlib
 
 import pytest
-from hamcrest import *
+from hamcrest import assert_that, equal_to
 
 
 def test_project_name_applied(cookies):
-    project_name = "pulse-project"
+    project_name = "pulse_project"
     result = cookies.bake(extra_context={"project_name": project_name})
 
     assert_that(result.project.basename, equal_to(project_name))
-
-
-def test_package_name_applied(cookies):
-    package_name = "package"
-    result = cookies.bake(extra_context={"package_name": package_name})
-    expected_path = pathlib.Path(result.project.strpath) / package_name
-
-    assert_that(expected_path.exists(), is_(True))
-    assert_that(expected_path.is_dir(), is_(True))
 
 
 def test_version_applied(cookies):

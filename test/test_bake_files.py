@@ -2,7 +2,7 @@ import os
 import pathlib
 
 import pytest
-from hamcrest import *
+from hamcrest import assert_that, has_items
 
 
 def test_build_files_added(cookies):
@@ -28,7 +28,7 @@ def test_build_files_added(cookies):
 def test_package_files_added(cookies):
     result = cookies.bake()
     package_files = os.listdir(
-        pathlib.Path(result.project.strpath) / "pulse_program"
+        pathlib.Path(result.project.strpath) / "helloworld"
     )
 
     assert_that(

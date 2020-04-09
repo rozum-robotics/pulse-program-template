@@ -3,12 +3,18 @@ import pathlib
 from cookiecutter.exceptions import FailedHookException
 
 import pytest
-from hamcrest import *
+from hamcrest import assert_that, equal_to, instance_of
 
 
-def test_invalid_package_name(cookies):
-    package_name = "aa-aa"
-    result = cookies.bake(extra_context={"package_name": package_name})
+def test_invalid_project_name_exit_code(cookies):
+    assert_that(
+        cookies.bake(extra_context={"project_name": "aa-aa"}).exit_code,
+        equal_to(-1)
+    )
 
-    assert_that(result.exit_code, equal_to(-1))
-    assert_that(result.exception, instance_of(FailedHookException))
+
+def test_invalid_project_name_exception(cookies):
+    assert_that(
+        cookies.bake(extra_context={"project_name": "aa-aa"}).exception,
+        instance_of(FailedHookException)
+    )
