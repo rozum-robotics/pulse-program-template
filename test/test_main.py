@@ -5,13 +5,13 @@ from hamcrest import *
 
 def test_main_run(cookies):
     sys.path.append(cookies.bake().project.strpath)
-    pulse_program = __import__("pulse_program", fromlist=["main"])
+    pulse_program = __import__("helloworld", fromlist=["main"])
     pulse_program.main.run(1, "localhost:8081")
 
 
 def test_methods_invocation(cookies, mocker):
     sys.path.append(cookies.bake().project.strpath)
-    pulse_program = __import__("pulse_program", fromlist=["main", "program"])
+    pulse_program = __import__("helloworld", fromlist=["main", "program"])
     program_patch = mocker.patch.object(pulse_program.main.program, "Instance")
     iterations = 2
     pulse_program.main.run(iterations, "localhost:8081")
@@ -39,7 +39,7 @@ def test_methods_invocation(cookies, mocker):
 
 def test_on_error_exit_invocation(cookies, mocker):
     sys.path.append(cookies.bake().project.strpath)
-    pulse_program = __import__("pulse_program", fromlist=["main", "program"])
+    pulse_program = __import__("helloworld", fromlist=["main", "program"])
     program_patch = mocker.patch.object(pulse_program.main.program, "Instance")
     exception = Exception("Boom!")
     program_patch.return_value.__enter__.return_value.execute.side_effect = exception

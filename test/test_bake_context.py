@@ -6,7 +6,7 @@ from hamcrest import *
 
 
 def test_project_name_applied(cookies):
-    project_name = "pulse-project"
+    project_name = "pulse_project"
     result = cookies.bake(extra_context={"project_name": project_name})
 
     assert_that(result.project.basename, equal_to(project_name))
