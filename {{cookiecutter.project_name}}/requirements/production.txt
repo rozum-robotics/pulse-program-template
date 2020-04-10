@@ -1,2 +1,1 @@
-pulse-executor==0.0.1.dev0
 pulse-api=={{cookiecutter.pulse_api_version}}
