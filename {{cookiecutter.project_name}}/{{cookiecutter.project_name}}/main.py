@@ -20,12 +20,12 @@ if __name__ == "__main__":
         "--iterations", 
         type=int, 
         required=True, 
-        description="Number of iterations to perform"
+        help="Number of iterations to perform"
     )
     parser.add_argument(
         "--robot-ip", 
         required=True, 
-        description="Network address of the target robotic arm"
+        help="Network address of the target robotic arm"
     )
     args = parser.parse_args()
     run(args.i, args.robot_ip)
