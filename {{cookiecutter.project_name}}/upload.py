@@ -75,7 +75,8 @@ def upload(host, port, venv_init=True):
             "venv/bin/python",
             "-m pip install",
             os.path.basename(dist_path),
-            "pulse-executor==0.0.1.dev0" "-i https://pip.rozum.com/simple",
+            "pulse-executor==0.0.1.dev0",
+            "-i https://pip.rozum.com/simple",
         ]
     )
     wait_cmd(ssh.exec_command(install_cmd))
