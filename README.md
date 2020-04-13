@@ -30,9 +30,25 @@ python3 -m cookiecutter git@dev.rozum.com:rozum-soft/utils/pulse-program-templat
 
 Fill in the fields and start developing at project_name/project_name folder.
 
+**Note:** It is recommended to create and activate python virtual environment
+prior to execution of any other commands.
+You can do this with following commands:
+
+```bash
+cd project_name
+python3 -m venv venv
+source venv/bin/activate
+```
+
 To test that project initiated properly, run:
 
 `pip install -e . -i https://pip.rozum.com/simple`
 
-**Note:** It is recommended to create and activate python virtual environment
-prior to execution of the command given above.
+To setup development environment on local machine, after template initialization, run:
+
+`pip install -r requirements/development.txt`
+
+After the setup the project is ready to be uploaded to the controlbox,
+you can do using the command:
+
+`python3 upload.py --host remote.robot.ip.address`

@@ -28,4 +28,4 @@ if __name__ == "__main__":
         help="Network address of the target robotic arm"
     )
     args = parser.parse_args()
-    run(args.i, args.robot_ip)
+    run(args.iterations, args.robot_ip)
