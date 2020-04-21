@@ -40,15 +40,11 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-To test that project initiated properly, run:
+To test that project initiated properly and install development requirements, run:
 
-`pip install -e . -i https://pip.rozum.com/simple`
-
-To setup development environment on local machine, after template initialization, run:
-
-`pip install -r requirements/development.txt`
+`pip install -e . -i https://pip.rozum.com/simple -r requirements/development.txt`
 
 After the setup the project is ready to be uploaded to the controlbox,
 you can do using the command:
 
-`python3 upload.py --host remote.robot.ip.address`
+`python3 upload.py remote.robot.ip.address`
