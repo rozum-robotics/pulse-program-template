@@ -39,7 +39,7 @@ def upload(host, port, venv_init=True):
     dist_path = make_sdist()
     print("done {}".format(dist_path))
 
-    print("Establishing SSH connection to {}:{}...".format(host, SANDBOX_PORT))
+    print("Establishing SSH connection to {}:{}...".format(host, port))
     ssh = SSHClient()
     ssh.set_missing_host_key_policy(AutoAddPolicy())
     pwd = getpass.getpass("Enter password: ")
@@ -47,7 +47,7 @@ def upload(host, port, venv_init=True):
         hostname=host,
         username=SANDBOX_USERNAME,
         password=pwd,
-        port=SANDBOX_PORT,
+        port=port,
     )
     print("Connection established")
 
