@@ -48,3 +48,12 @@ After the setup the project is ready to be uploaded to the controlbox,
 you can do using the command:
 
 `python3 upload.py remote.robot.ip.address`
+
+If you need to upload program to the port that is not the default one (22),
+use the following command:
+
+`python3 upload.py remote.robot.ip.address --port your_port_here`
+
+Example, assuming that sandbox is running on `localhost:2222`:
+
+`python3 upload.py localhost --port 2222`
