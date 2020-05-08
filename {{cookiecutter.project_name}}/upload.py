@@ -48,6 +48,8 @@ def upload(host, port, venv_init=True):
         username=SANDBOX_USERNAME,
         password=pwd,
         port=port,
+        allow_agent=False,
+        look_for_keys=False,
     )
     print("Connection established")
 
