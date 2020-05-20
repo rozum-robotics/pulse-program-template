@@ -17,22 +17,23 @@ SCRIPT = os.path.realpath(__file__)
 SCRIPT_ROOT = os.path.dirname(SCRIPT)
 
 
-def make_logger():
+def make_logger(verbose_enabled: bool, file_enabled: bool):
     logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
+    if verbose_enabled:
+        logger.setLevel(logging.DEBUG)
+    else:
+        logger.setLevel(logging.INFO)
     formatter = logging.Formatter("[%(asctime)s] [%(levelname)s] %(message)s")
-    
+
     ch = logging.StreamHandler()
     ch.setFormatter(formatter)
-    ch.setLevel(logging.INFO)
-    
-    fh = logging.FileHandler("upload.log")
-    fh.setFormatter(formatter)
-    fh.setLevel(logging.INFO)
-    
     logger.addHandler(ch)
-    logger.addHandler(fh)
-    
+
+    if file_enabled:
+        fh = logging.FileHandler("upload.log")
+        fh.setFormatter(formatter)
+        logger.addHandler(fh)
+
     return logger
 
 
@@ -57,7 +58,6 @@ def upload(host, port, log, venv_init=True):
     log.debug("Making distribution...")
     dist_path = make_sdist()
     log.debug("Distribution done {}".format(dist_path))
-
     log.debug("Establishing SSH connection to {}:{}...".format(host, port))
     ssh = SSHClient()
     ssh.set_missing_host_key_policy(AutoAddPolicy())
@@ -114,17 +114,21 @@ def main():
     parser.add_argument(
         "--port", type=int, default=SANDBOX_PORT, required=False
     )
+    parser.add_argument("--verbose", action="store_true", required=False)
+    parser.add_argument("--dump-log", action="store_true", required=False)
     args = parser.parse_args()
     robot_host, robot_port = args.host, args.port
-    log = make_logger()
-    log.info("Upload started")
+    verbose_logging, file_logging = args.verbose, args.dump_log
+    log = make_logger(verbose_logging, file_logging)
     try:
+        log.info("Upload started")
         upload(robot_host, robot_port, log)
     except Exception as e:
         log.error("Upload failed")
         log.error(e)
     else:
         log.info("Upload finished successfully")
+
 
 if __name__ == "__main__":
     main()
