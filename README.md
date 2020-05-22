@@ -2,6 +2,10 @@
 
 Template to create Python programs for Pulse Program Player.
 
+## Requirements
+
+Python 3.5+
+
 ## Configuration
 ```json
 {
