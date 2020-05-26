@@ -79,7 +79,7 @@ put the `pass` keyword inside and leave them blank.
 * `__init__` and `__enter__` - used for the program instance initialization.
   **Should not be modified.**
 * `__exit__` - used for program instance deinitialization. Invokes the
-  `on_error()` metho
+  `on_error()` method passing the exception value if it is present.
 * `before_all()` - will be executed once before the the other methods.
   It is a good place to put initialization logic. For example, set the starting
   pose/position for the robot or enable necessary devices
