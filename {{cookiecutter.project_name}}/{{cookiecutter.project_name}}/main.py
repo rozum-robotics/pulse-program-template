@@ -23,9 +23,9 @@ if __name__ == "__main__":
         help="Number of iterations to perform"
     )
     parser.add_argument(
-        "--robot-ip", 
+        "--robot-addr", 
         required=True, 
         help="Network address of the target robotic arm"
     )
     args = parser.parse_args()
-    run(args.iterations, args.robot_ip)
+    run(args.iterations, args.robot_addr)
