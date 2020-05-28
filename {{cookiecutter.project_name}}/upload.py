@@ -96,7 +96,7 @@ def upload(host, port, log, venv_init=True):
             "venv/bin/python",
             "-m pip install",
             os.path.basename(dist_path),
-            "pulse-executor==0.0.1.dev0",
+            "pulse-executor",
             "-i https://pip.rozum.com/simple",
         ]
     )
