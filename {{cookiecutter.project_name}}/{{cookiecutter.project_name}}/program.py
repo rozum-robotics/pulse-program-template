@@ -11,7 +11,7 @@ class Instance:
         return self
     
     def __exit__(self, exc_type, exc_value, traceback):
-        if exc_value is not None:
+        if exc_value is not None and exc_type != SystemExit:
             self.on_error(exc_value)
     
     def before_all(self):
@@ -27,7 +27,9 @@ class Instance:
         print("After each")
 
     def after_all(self):
-        print("After all")
+        # do not use stdout in this block in the program
+        # that is uploaded to the robot
+        pass
 
     def on_error(self, exc_value):
         print("On error")
