@@ -45,7 +45,7 @@ def wait_cmd(stds):
 
 def make_sdist():
     proc = subprocess.run(
-        ["python3", "setup.py", "sdist", "--formats=zip"], cwd=SCRIPT_ROOT
+        ["python", "setup.py", "sdist", "--formats=zip"], cwd=SCRIPT_ROOT
     )
     if proc.returncode:
         raise RuntimeError("Failed to make source distribution")
@@ -97,7 +97,6 @@ def upload(host, port, log, venv_init=True):
             "-m pip install",
             os.path.basename(dist_path),
             "pulse-executor -U",
-            "-i https://pip.rozum.com/simple",
         ]
     )
     wait_cmd(ssh.exec_command(install_cmd))

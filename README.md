@@ -25,7 +25,7 @@ Python 3.5+
 * `cd {{cookiecutter.project_name}}` (*project_name* is filled during template initialization)
 * `python3 -m venv venv` will create virtual environment for the project
 * `source venv/bin/activate` will activate virtual environment
-* `pip install -e . -i https://pip.rozum.com/simple -r requirements/development.txt`
+* `pip install -e . -r requirements/development.txt`
   will install development requirements.
 
 ## Cookiecutter params
