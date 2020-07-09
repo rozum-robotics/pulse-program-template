@@ -17,7 +17,7 @@ Python 3.5+
 ## Installation
 
 * Python 3.5+ required 
-  (on Debian-based linux run `sudo apt-get install python3-dev python3-venv`)
+  (on Debian-based linux run `sudo apt-get install python3-dev python3-venv python3-pip`)
 * `python3 -m pip install cookiecutter --user`
 * `python3 -m cookiecutter git@gitlab.com:rozumrobotics/rozum-developers/utils/pulse-program-template.git`
   will result in several prompts to be filled (see [params](#cookiecutter-params))
@@ -131,6 +131,9 @@ program on robot for future usage. You can do this using the following command
 (remember to activate the virtual environment):
 
 `python3 upload.py 192.168.0.24`
+
+Notice that script would ask you a sandbox password. 
+The default password is `sandbox`. 
 
 If you need to upload program to the port that is not the default one
 (e.g. 2222, instead of the default one - 22), use the following command:
