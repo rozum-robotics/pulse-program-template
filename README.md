@@ -176,6 +176,6 @@ templates.
 4. Initialize virtual environment: `python3 -m venv venv` or, for Windows,
    `python -m venv venv`
 5. Activate virtual environment: `source venv/bin/activate` or, for Windows cmd/powershell, `<venv>\Scripts\activate.bat`/`PS C:\> <venv>\Scripts\Activate.ps1`
-6. Install development requirements: `Выполнить pip install -r requirements/development.txt`
+6. Install development requirements: `pip install -r requirements/development.txt`
 7. Follow the upload guide above
 8. Run the program from Pulse Program Player UI.
