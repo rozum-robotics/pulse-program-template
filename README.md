@@ -17,7 +17,7 @@ Python 3.5+
 ## Installation
 
 * Python 3.5+ required 
-  (on Debian-based linux run `sudo apt-get install python3-dev python3-venv`)
+  (on Debian-based Linux run `sudo apt-get install python3-dev python3-venv`)
 * `python3 -m pip install cookiecutter --user`
 * `python3 -m cookiecutter git@gitlab.com:rozumrobotics/rozum-developers/utils/pulse-program-template.git`
   will result in several prompts to be filled (see [params](#cookiecutter-params))
@@ -27,6 +27,9 @@ Python 3.5+
 * `source venv/bin/activate` will activate virtual environment
 * `pip install -e . -r requirements/development.txt`
   will install development requirements.
+
+Windows specific note: Use `python` instead of `python3` in commands and make
+sure it is added to PATH.
 
 ## Cookiecutter params
 ```json
@@ -148,3 +151,28 @@ parameter to the command. Also, please, write the actions that took part before.
 Example command to dump detailed log:
 
 `python3 upload.py 192.168.0.24 --verbose --dump-log`
+
+## Examples
+
+There is an `examples` folder in repository. It contains pre-initialized
+templates.
+
+### Minimal requirements
+
+1. Python3 (3.5+ version) is installed in your system
+2. It is possible to initialize python virtual environment. It means:
+   1. On Linux: python3-venv package is installed
+   2. On Windows: python is added to PATH during installation or manually and `virtualenv` package is installed
+   3. On MacOS: check that you can create venv using the `python3 -m venv venv` in terminal or use this [guide](https://gist.github.com/pandafulmanda/730a9355e088a9970b18275cb9eadef3)
+
+### How to run pre-initialized template
+
+1. Download archive (e.g. example_170.zip, compatible with Pulse-Desk 1.7.0)
+2. Unzip it into working directory
+3. Open terminal and navigate into unzipped folder
+4. Initialize virtual environment: `python3 -m venv venv` or, for Windows,
+   `python -m venv venv`
+5. Activate virtual environment: `source venv/bin/activate` or, for Windows cmd/powershell, `<venv>\Scripts\activate.bat`/`PS C:\> <venv>\Scripts\Activate.ps1`
+6. Install development requirements: `Выполнить pip install -r requirements/development.txt`
+7. Follow the upload guide above
+8. Run the program from Pulse Program Player UI.
