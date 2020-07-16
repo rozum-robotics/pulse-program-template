@@ -1,19 +1,16 @@
 import argparse
 
-from {{cookiecutter.package_name}} import program
+from {{cookiecutter.project_name}} import program
 
 
 def run(num_iterations: int, robot_ip: str):    
     with program.Instance(robot_ip) as p:
-        # try:
         p.before_all()
         for i in range(num_iterations):
             p.before_each()
             p.execute()
             p.after_each()
         p.after_all()
-        # except Exception as exc:
-            # p.on_error(exc)
 
 
 if __name__ == "__main__":
@@ -23,12 +20,12 @@ if __name__ == "__main__":
         "--iterations", 
         type=int, 
         required=True, 
-        description="Number of iterations to perform"
+        help="Number of iterations to perform"
     )
     parser.add_argument(
-        "--robot-ip", 
+        "--robot-addr", 
         required=True, 
-        description="Network address of the target robotic arm"
+        help="Network address of the target robotic arm"
     )
     args = parser.parse_args()
-    run(args.i, args.robot_ip)
+    run(args.iterations, args.robot_addr)
