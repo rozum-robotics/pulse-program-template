@@ -19,7 +19,7 @@ Python 3.5+
 * Python 3.5+ required 
   (on Debian-based linux run `sudo apt-get install python3-dev python3-venv python3-pip`)
 * `python3 -m pip install cookiecutter --user`
-* `python3 -m cookiecutter git@gitlab.com:rozumrobotics/rozum-developers/utils/pulse-program-template.git`
+* `python3 -m cookiecutter https://github.com/rozum-robotics/pulse-program-template`
   will result in several prompts to be filled (see [params](#cookiecutter-params))
   (change the link when published)
 * `cd {{cookiecutter.project_name}}` (*project_name* is filled during template initialization)
