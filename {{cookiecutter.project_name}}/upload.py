@@ -103,7 +103,7 @@ def upload(host, port, log, venv_init=True):
     log.debug("Distribution installed")
 
     chown_cmd = " ".join(
-        ["cd {} &&".format(project_path), "chown", "-R", ":sandbox", "."]
+        ["cd {} &&".format(project_path), "chmod", "-R", "g+rw", "."]
     )
     wait_cmd(ssh.exec_command(chown_cmd))
     log.debug("Changed ownership for project files")
