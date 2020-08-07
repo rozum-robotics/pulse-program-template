@@ -102,6 +102,12 @@ def upload(host, port, log, venv_init=True):
     wait_cmd(ssh.exec_command(install_cmd))
     log.debug("Distribution installed")
 
+    chown_cmd = " ".join(
+        ["cd {} &&".format(project_path), "chmod", "-R", "g+rw", "."]
+    )
+    wait_cmd(ssh.exec_command(chown_cmd))
+    log.debug("Changed ownership for project files")
+
     log.debug("Closing SSH connection...")
     ssh.close()
     log.debug("SSH connection closed")
